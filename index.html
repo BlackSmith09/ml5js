@@ -48,6 +48,7 @@
             });
 
             async function classifyImage(img) {
+                clearPreviousResult();
                 // Initialize Image Classifier with MobileNet.
                 const classifier =  await ml5.imageClassifier('MobileNet');
                 classifier.classify(img, function(error, results) {
@@ -59,6 +60,10 @@
                         element.innerHTML = "Label:" + results[0].label + "<br>Confidence: " + num.toFixed(2) + "%";
                     }
             });
+        }
+        function clearPreviousResult() {
+            const element = document.getElementById('result');
+            element.innerHTML = "Generating New results...";
         }
         </script>
     </body>
