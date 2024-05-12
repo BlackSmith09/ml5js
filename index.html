@@ -13,9 +13,14 @@
                 margin-top: 20px;
                 font-size: 18px;
             }
-            #image {
+            #image-container {
                 margin-top: 20px;
+                text-align: center;
+            }
+            #image {
                 max-width: 100%;
+                display: inline-block;
+                margin: 0 auto;
             }
             #upload-btn {
                 margin-top: 20px;
@@ -36,13 +41,17 @@
             <input type="file" accept="image/*" id="fileInput" style="display: none;">
             <button onclick="document.getElementById('fileInput').click()" id="upload-btn">Upload Image</button>
         </div>
-        <div id="result">Running Image Classifier...</div>
-        <img id="image" src="./images/PIC01.jpg" alt="Uploaded Image"></img>
+        <div id="result"></div>
+        <div id="#image-container">
+            <img id="image"></img>
+        </div>
+        
 
         <script>
             document.getElementById('fileInput').addEventListener('change', function(event){
                 const file = event.target.files[0];
                 const image = document.getElementById('image');
+                image.style.display = 'block';
                 image.src = URL.createObjectURL(file);
                 classifyImage(image);
             });
@@ -63,7 +72,7 @@
         }
         function clearPreviousResult() {
             const element = document.getElementById('result');
-            element.innerHTML = "Generating New results...";
+            element.innerHTML = "Running Classifier...";
         }
         </script>
     </body>
